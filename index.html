@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BTA U-Classification Calculator</title>
+<title>TI-RADS Calculator</title>
 <style>
   :root {
     --bg: #0f1117;
@@ -22,11 +22,11 @@
     --warning-dim: rgba(251, 191, 36, 0.12);
     --danger: #f87171;
     --danger-dim: rgba(248, 113, 113, 0.12);
-    --u1: #34d399;
-    --u2: #60a5fa;
-    --u3: #fbbf24;
-    --u4: #fb923c;
-    --u5: #f87171;
+    --tr1: #34d399;
+    --tr2: #60a5fa;
+    --tr3: #fbbf24;
+    --tr4: #fb923c;
+    --tr5: #f87171;
     --radius: 8px;
     --radius-lg: 12px;
     --font-mono: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
@@ -71,7 +71,7 @@
     align-items: center;
     justify-content: center;
     font-family: var(--font-mono);
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 700;
     color: var(--accent);
     letter-spacing: -0.5px;
@@ -224,7 +224,7 @@
     color: var(--text-muted);
   }
 
-  .u-badge {
+  .tr-badge {
     font-family: var(--font-mono);
     font-size: 28px;
     font-weight: 700;
@@ -233,11 +233,11 @@
     transition: color 0.3s;
   }
 
-  .u-badge.u1 { color: var(--u1); }
-  .u-badge.u2 { color: var(--u2); }
-  .u-badge.u3 { color: var(--u3); }
-  .u-badge.u4 { color: var(--u4); }
-  .u-badge.u5 { color: var(--u5); }
+  .tr-badge.tr1 { color: var(--tr1); }
+  .tr-badge.tr2 { color: var(--tr2); }
+  .tr-badge.tr3 { color: var(--tr3); }
+  .tr-badge.tr4 { color: var(--tr4); }
+  .tr-badge.tr5 { color: var(--tr5); }
 
   .result-desc {
     font-size: 13px;
@@ -347,11 +347,11 @@
     border-left: 4px solid transparent;
   }
 
-  .mgmt-card.u1 { border-left-color: var(--u1); }
-  .mgmt-card.u2 { border-left-color: var(--u2); }
-  .mgmt-card.u3 { border-left-color: var(--u3); }
-  .mgmt-card.u4 { border-left-color: var(--u4); }
-  .mgmt-card.u5 { border-left-color: var(--u5); }
+  .mgmt-card.tr1 { border-left-color: var(--tr1); }
+  .mgmt-card.tr2 { border-left-color: var(--tr2); }
+  .mgmt-card.tr3 { border-left-color: var(--tr3); }
+  .mgmt-card.tr4 { border-left-color: var(--tr4); }
+  .mgmt-card.tr5 { border-left-color: var(--tr5); }
 
   .mgmt-title {
     display: flex;
@@ -366,11 +366,11 @@
     font-weight: 700;
   }
 
-  .mgmt-card.u1 .mgmt-badge { color: var(--u1); }
-  .mgmt-card.u2 .mgmt-badge { color: var(--u2); }
-  .mgmt-card.u3 .mgmt-badge { color: var(--u3); }
-  .mgmt-card.u4 .mgmt-badge { color: var(--u4); }
-  .mgmt-card.u5 .mgmt-badge { color: var(--u5); }
+  .mgmt-card.tr1 .mgmt-badge { color: var(--tr1); }
+  .mgmt-card.tr2 .mgmt-badge { color: var(--tr2); }
+  .mgmt-card.tr3 .mgmt-badge { color: var(--tr3); }
+  .mgmt-card.tr4 .mgmt-badge { color: var(--tr4); }
+  .mgmt-card.tr5 .mgmt-badge { color: var(--tr5); }
 
   .mgmt-name {
     font-size: 15px;
@@ -467,6 +467,17 @@
     color: var(--text);
   }
 
+  .lex-item-points {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--accent-dim);
+    padding: 2px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+
   .lex-note {
     margin-top: 10px;
     padding: 10px 12px;
@@ -555,10 +566,10 @@
 
 <header>
   <div class="header-top">
-    <div class="logo-mark">U</div>
+    <div class="logo-mark">TR</div>
     <div class="header-text">
-      <h1>BTA U-Classification Calculator</h1>
-      <p>British Thyroid Association Ultrasound Classification · 2023 Guidelines</p>
+      <h1>TI-RADS Calculator</h1>
+      <p>Calculates TI-RADS score based on 2017 ACR White Paper</p>
     </div>
   </div>
   <nav class="tabs" role="tablist">
@@ -585,93 +596,69 @@
         <label class="field-label" for="location">Location</label>
         <select id="location">
           <option value="">Select…</option>
-          <option value="Right">Right lobe</option>
+          <option value="Right">Right</option>
           <option value="Isthmus">Isthmus</option>
-          <option value="Left">Left lobe</option>
+          <option value="Left">Left</option>
         </select>
       </div>
 
       <div class="field-row">
-        <label class="field-label" for="size">
-          Size (mm)
-          <span class="sublabel">Maximum diameter</span>
-        </label>
-        <input type="number" id="size" placeholder="e.g. 15" min="0" step="0.1">
+        <label class="field-label" for="size">Size (cm)</label>
+        <input type="number" id="size" placeholder="e.g. 1.5" min="0" step="0.1">
       </div>
 
       <div class="field-row">
         <label class="field-label" for="composition">Composition</label>
-        <select id="composition">
+        <select id="composition" data-points='{"cystic":0,"spongiform":0,"mixed":1,"solid":2}'>
           <option value="">Select…</option>
-          <option value="pure_cystic">Pure cystic</option>
-          <option value="microcystic">Microcystic / spongiform (≥50% cystic)</option>
-          <option value="mixed">Mixed cystic and solid</option>
-          <option value="solid">Solid</option>
-          <option value="uncertain">Uncertain (heavily calcified)</option>
+          <option value="cystic">Cystic or almost completely cystic (0)</option>
+          <option value="spongiform">Spongiform (0)</option>
+          <option value="mixed">Mixed cystic and solid (1)</option>
+          <option value="solid">Solid or almost completely solid (2)</option>
         </select>
       </div>
 
       <div class="field-row">
         <label class="field-label" for="echogenicity">Echogenicity</label>
-        <select id="echogenicity">
+        <select id="echogenicity" data-points='{"anechoic":0,"hyperiso":1,"hypo":2,"very_hypo":3}'>
           <option value="">Select…</option>
-          <option value="anechoic">Anechoic (cystic)</option>
-          <option value="hyperiso">Hyperechoic or isoechoic</option>
-          <option value="hypo">Hypoechoic</option>
-          <option value="very_hypo">Markedly hypoechoic</option>
-          <option value="na">Not applicable (cystic)</option>
+          <option value="anechoic">Anechoic (0)</option>
+          <option value="hyperiso">Hyperechoic or isoechoic (1)</option>
+          <option value="hypo">Hypoechoic (2)</option>
+          <option value="very_hypo">Very hypoechoic (3)</option>
         </select>
       </div>
 
       <div class="field-row">
         <label class="field-label" for="shape">Shape</label>
-        <select id="shape">
+        <select id="shape" data-points='{"wider":0,"taller":3}'>
           <option value="">Select…</option>
-          <option value="wider">Wider than tall</option>
-          <option value="taller">Taller than wide (AP &gt; transverse)</option>
+          <option value="wider">Wider-than-tall (0)</option>
+          <option value="taller">Taller-than-wide (3)</option>
         </select>
       </div>
 
       <div class="field-row">
         <label class="field-label" for="margin">Margin</label>
-        <select id="margin">
+        <select id="margin" data-points='{"smooth":0,"ill_defined":0,"lobulated":2,"ete":3}'>
           <option value="">Select…</option>
-          <option value="smooth">Smooth / well-defined</option>
-          <option value="ill_defined">Ill-defined</option>
-          <option value="lobulated">Lobulated or irregular</option>
-          <option value="ete">Extra-thyroidal extension</option>
+          <option value="smooth">Smooth (0)</option>
+          <option value="ill_defined">Ill-defined (0)</option>
+          <option value="lobulated">Lobulated or irregular (2)</option>
+          <option value="ete">Extra-thyroidal extension (3)</option>
         </select>
       </div>
 
       <div class="field-row">
-        <label class="field-label" for="calcification">Calcification</label>
-        <select id="calcification">
-          <option value="">Select…</option>
-          <option value="none">None / comet-tail artefact</option>
-          <option value="macro">Macrocalcification</option>
-          <option value="peripheral">Peripheral / rim calcification</option>
-          <option value="micro">Microcalcification (punctate echogenic foci)</option>
-        </select>
-      </div>
-
-      <div class="field-row">
-        <label class="field-label" for="vascularity">Vascularity</label>
-        <select id="vascularity">
-          <option value="">Select…</option>
-          <option value="none_peri">Absent or peripheral only</option>
-          <option value="internal">Increased internal vascularity</option>
-        </select>
-      </div>
-
-      <div class="field-row">
-        <label class="field-label" for="lymph">
-          Lymph Nodes
-          <span class="sublabel">Suspicious features?</span>
+        <label class="field-label" for="foci">
+          Echogenic Foci
+          <span class="sublabel">Select all that apply</span>
         </label>
-        <select id="lymph">
-          <option value="">Select…</option>
-          <option value="normal">Normal or not assessed</option>
-          <option value="suspicious">Suspicious (rounded, microcalcified, cystic, hyperechoic)</option>
+        <select id="foci" multiple data-points='{"none":0,"macro":1,"peripheral":2,"punctate":3}' style="min-height: 92px;">
+          <option value="none">None or large comet-tail artifacts (0)</option>
+          <option value="macro">Macrocalcifications (1)</option>
+          <option value="peripheral">Peripheral calcifications (2)</option>
+          <option value="punctate">Punctate echogenic foci (3)</option>
         </select>
       </div>
 
@@ -680,8 +667,8 @@
     <!-- Result -->
     <div class="result-card" style="margin-top: 18px;">
       <div class="result-header">
-        <span class="result-label">U-Classification</span>
-        <span class="u-badge" id="u-badge">—</span>
+        <span class="result-label">TI-RADS Score</span>
+        <span class="tr-badge" id="tr-badge">—</span>
       </div>
       <div class="result-desc" id="result-desc">Complete the fields above and press Calculate.</div>
       <div class="result-rows" id="result-rows" style="display:none;">
@@ -690,24 +677,24 @@
           <span class="result-val" id="res-nodule">—</span>
         </div>
         <div class="result-row">
-          <span class="result-key">Malignancy risk</span>
-          <span class="result-val" id="res-risk">—</span>
+          <span class="result-key">Points</span>
+          <span class="result-val" id="res-points">—</span>
         </div>
         <div class="result-row">
-          <span class="result-key">Management</span>
+          <span class="result-key">Recommendation</span>
           <span class="result-val" id="res-mgmt">—</span>
         </div>
         <div class="result-row">
-          <span class="result-key">Thy grading</span>
-          <span class="result-val muted" id="res-thy">—</span>
+          <span class="result-key">Follow-up</span>
+          <span class="result-val muted" id="res-followup">—</span>
         </div>
       </div>
     </div>
 
     <div class="actions">
-      <button class="btn btn-primary" id="btn-calc">✓ Calculate</button>
+      <button class="btn btn-primary" id="btn-calc">✓ Calculate Score</button>
       <button class="btn btn-ghost" id="btn-copy" style="display:none;">⎘ Copy Report</button>
-      <button class="btn btn-ghost" id="btn-reset">↺ Reset</button>
+      <button class="btn btn-ghost" id="btn-reset">↺ Reset Values</button>
     </div>
 
   </div><!-- end calculator -->
@@ -717,78 +704,73 @@
   <div id="tab-management" class="tab-panel">
 
     <div class="mgmt-intro">
-      BTA 2023 ultrasound classification and management guidelines. U-category reflects ultrasound features only; final management must integrate clinical context, patient factors, and cytology (Thy grading) when available.
+      2017 ACR White Paper — FNA and follow-up recommendations. Always integrate with clinical context and patient-specific factors.
     </div>
 
     <div class="mgmt-grid">
 
-      <div class="mgmt-card u1">
+      <div class="mgmt-card tr1">
         <div class="mgmt-title">
-          <span class="mgmt-badge">U1</span>
-          <span class="mgmt-name">Normal</span>
-          <span class="mgmt-malignancy">~0%</span>
+          <span class="mgmt-badge">TR1</span>
+          <span class="mgmt-name">Benign</span>
+          <span class="mgmt-malignancy">0 points</span>
         </div>
         <div class="mgmt-body">
-          <p>Normal thyroid appearances with no discrete nodule identified, or an incidental nodule with no suspicious features on a high-quality study.</p>
           <p><strong>No FNA required. No follow-up required.</strong></p>
         </div>
       </div>
 
-      <div class="mgmt-card u2">
+      <div class="mgmt-card tr2">
         <div class="mgmt-title">
-          <span class="mgmt-badge">U2</span>
-          <span class="mgmt-name">Benign</span>
-          <span class="mgmt-malignancy">&lt;1%</span>
+          <span class="mgmt-badge">TR2</span>
+          <span class="mgmt-name">Not suspicious</span>
+          <span class="mgmt-malignancy">2 points</span>
         </div>
         <div class="mgmt-body">
-          <p>Features consistent with benign pathology: pure cystic nodule, spongiform / microcystic nodule, hyperechoic nodule with comet-tail artefacts, or a nodule with typical benign features (well-defined, isoechoic, no suspicious calcification).</p>
-          <p><strong>No FNA required.</strong> Routine clinical follow-up only; USS follow-up not routinely indicated unless large (&gt;35 mm) or clinical concern.</p>
+          <p><strong>No FNA required. No follow-up required.</strong></p>
         </div>
       </div>
 
-      <div class="mgmt-card u3">
+      <div class="mgmt-card tr3">
         <div class="mgmt-title">
-          <span class="mgmt-badge">U3</span>
-          <span class="mgmt-name">Indeterminate / Equivocal</span>
-          <span class="mgmt-malignancy">~5–10%</span>
+          <span class="mgmt-badge">TR3</span>
+          <span class="mgmt-name">Mildly suspicious</span>
+          <span class="mgmt-malignancy">3 points</span>
         </div>
         <div class="mgmt-body">
-          <p>Features that are neither clearly benign nor clearly suspicious. Includes: predominantly solid isoechoic nodule with lobulated margin, mixed cystic-solid nodule with solid mural nodule, or subtle suspicious features insufficient for U4.</p>
-          <p><strong>FNA if ≥ 20 mm</strong> (or smaller if rapid growth, symptomatic, or clinical concern).</p>
-          <p>If no FNA: <strong>USS follow-up at 3–6 months</strong>, then annually for 2 years if stable. Reclassify if features change.</p>
+          <p><strong>FNA if:</strong> ≥ 2.5 cm</p>
+          <p><strong>Follow-up if:</strong> ≥ 1.5 cm (at 1, 3, and 5 years)</p>
         </div>
       </div>
 
-      <div class="mgmt-card u4">
+      <div class="mgmt-card tr4">
         <div class="mgmt-title">
-          <span class="mgmt-badge">U4</span>
-          <span class="mgmt-name">Suspicious</span>
-          <span class="mgmt-malignancy">~60–75%</span>
+          <span class="mgmt-badge">TR4</span>
+          <span class="mgmt-name">Moderately suspicious</span>
+          <span class="mgmt-malignancy">4–6 points</span>
         </div>
         <div class="mgmt-body">
-          <p>One or more of: solid hypoechoic nodule with irregular / lobulated margin, microcalcification within a solid or mixed component, taller-than-wide shape, disrupted peripheral calcification.</p>
-          <p><strong>FNA recommended</strong> for all nodules ≥ 10 mm. For nodules &lt;10 mm, clinical and MDT discussion advised before proceeding.</p>
-          <p>Cytology should be reported using the Thy grading system (Thy 1–5).</p>
+          <p><strong>FNA if:</strong> ≥ 1.5 cm</p>
+          <p><strong>Follow-up if:</strong> ≥ 1.0 cm (at 1, 2, 3, and 5 years)</p>
         </div>
       </div>
 
-      <div class="mgmt-card u5">
+      <div class="mgmt-card tr5">
         <div class="mgmt-title">
-          <span class="mgmt-badge">U5</span>
-          <span class="mgmt-name">Malignant</span>
-          <span class="mgmt-malignancy">&gt;95%</span>
+          <span class="mgmt-badge">TR5</span>
+          <span class="mgmt-name">Highly suspicious</span>
+          <span class="mgmt-malignancy">≥7 points</span>
         </div>
         <div class="mgmt-body">
-          <p>Highly suspicious features present: markedly hypoechoic solid nodule, taller-than-wide shape, clearly irregular / spiculated margin, extra-thyroidal extension, or suspicious lymph nodes with loss of fatty hilum, microcalcification, or cystic change.</p>
-          <p><strong>FNA and urgent MDT referral.</strong> If FNA confirms malignancy (Thy 5), proceed directly to surgical planning. Do not delay management for repeat sampling where features are overtly malignant.</p>
-          <p><strong>Core needle biopsy</strong> may be appropriate for large fixed masses or where FNA is non-diagnostic.</p>
+          <p><strong>FNA if:</strong> ≥ 1.0 cm</p>
+          <p><strong>Follow-up if:</strong> ≥ 0.5 cm (annually for up to 5 years)</p>
         </div>
       </div>
 
     </div>
 
     <div class="mgmt-note">
-      <strong>Thy cytology grading:</strong> Thy 1 = non-diagnostic; Thy 2 = non-neoplastic; Thy 3a = atypia of undetermined significance; Thy 3f = follicular lesion / neoplasm; Thy 4 = suspicious for malignancy; Thy 5 = diagnostic of malignancy. FNA reports should always be correlated with the U-category. Based on BTA 2023 Guidelines.
+      Based on ACR TI-RADS 2017. Always integrate with clinical context and patient-specific factors.
     </div>
 
   </div><!-- end management -->
@@ -802,47 +784,43 @@
       <div class="lex-section-header">
         <span class="lex-icon">🧱</span>
         <span class="lex-section-title">Composition</span>
-        <span class="lex-section-sub">Choose 1</span>
+        <span class="lex-section-sub">Choose 1 · Max 2 pts</span>
       </div>
       <div class="lex-items">
 
         <div class="lex-item">
           <div class="lex-item-header">
-            <span class="lex-item-name">Pure cystic</span>
+            <span class="lex-item-name">Cystic or almost completely cystic</span>
+            <span class="lex-item-points">0 pts</span>
           </div>
-          <div class="lex-item-desc">Entirely fluid-filled with no solid component. May contain colloid or blood products. Almost always benign (U2).</div>
+          <div class="lex-item-desc">Entirely or nearly entirely fluid-filled. No solid component.</div>
         </div>
 
         <div class="lex-item">
           <div class="lex-item-header">
-            <span class="lex-item-name">Microcystic / spongiform</span>
+            <span class="lex-item-name">Spongiform</span>
+            <span class="lex-item-points">0 pts</span>
           </div>
-          <div class="lex-item-desc">More than 50% of the nodule volume is composed of small cystic spaces (aggregated microcysts). The "sponge" appearance is highly specific for benign colloid nodule. Classified U2 regardless of size.</div>
-          <div class="lex-tip">💡 The aggregated microcystic spaces often produce comet-tail reverberation artefacts, confirming colloid content.</div>
+          <div class="lex-item-desc">Composed predominantly (&gt;50%) of small cystic spaces. Aggregated microcystic appearance. Considered benign.</div>
         </div>
 
         <div class="lex-item">
           <div class="lex-item-header">
             <span class="lex-item-name">Mixed cystic and solid</span>
+            <span class="lex-item-points">1 pt</span>
           </div>
-          <div class="lex-item-desc">Contains both cystic and solid components. Classification depends on the features of the solid component. A solid mural nodule with suspicious characteristics upgrades the classification towards U4.</div>
-          <div class="lex-note">⚠️ Always evaluate the solid component independently. A purely smooth mural nodule without suspicious features suggests U2–3; irregular or calcified solid elements raise suspicion to U4.</div>
+          <div class="lex-item-desc">Contains both cystic and solid components. Score points for the predominant solid portion.</div>
         </div>
 
         <div class="lex-item">
           <div class="lex-item-header">
-            <span class="lex-item-name">Solid</span>
+            <span class="lex-item-name">Solid or almost completely solid</span>
+            <span class="lex-item-points">2 pts</span>
           </div>
-          <div class="lex-item-desc">No or negligible cystic component. Solid nodules must be assessed with echogenicity, shape, margin, and calcification to assign U-category.</div>
+          <div class="lex-item-desc">Little or no cystic component. Predominantly solid tissue throughout.</div>
         </div>
 
-        <div class="lex-item">
-          <div class="lex-item-header">
-            <span class="lex-item-name">Uncertain (heavily calcified)</span>
-          </div>
-          <div class="lex-item-desc">When coarse calcification produces extensive posterior acoustic shadowing preventing assessment of internal composition. Treat as solid for classification purposes and assess accessible margins carefully.</div>
-        </div>
-
+        <div class="lex-note">⚠️ If calcification causes strong acoustic shadowing that prevents assessment of composition, assume the nodule is solid and assign 2 points for composition.</div>
       </div>
     </div>
 
@@ -851,39 +829,43 @@
       <div class="lex-section-header">
         <span class="lex-icon">🔊</span>
         <span class="lex-section-title">Echogenicity</span>
-        <span class="lex-section-sub">Choose 1 · for solid component</span>
+        <span class="lex-section-sub">Choose 1 · Max 3 pts</span>
       </div>
       <div class="lex-items">
 
         <div class="lex-item">
           <div class="lex-item-header">
             <span class="lex-item-name">Anechoic</span>
+            <span class="lex-item-points">0 pts</span>
           </div>
-          <div class="lex-item-desc">No internal echoes. Applies only to pure cystic nodules. Classified U2.</div>
+          <div class="lex-item-desc">Applies to cystic or almost completely cystic nodules. No internal echoes.</div>
         </div>
 
         <div class="lex-item">
           <div class="lex-item-header">
             <span class="lex-item-name">Hyperechoic or isoechoic</span>
+            <span class="lex-item-points">1 pt</span>
           </div>
-          <div class="lex-item-desc">Equal to or greater echogenicity than surrounding thyroid parenchyma. Generally favours benign aetiology in the context of no other suspicious features (U2–3). Hyperechoic nodules with peripheral halo and well-defined margin are characteristic of benign adenoma.</div>
+          <div class="lex-item-desc">Equal to or greater than echogenicity of adjacent thyroid parenchyma.</div>
         </div>
 
         <div class="lex-item">
           <div class="lex-item-header">
             <span class="lex-item-name">Hypoechoic</span>
+            <span class="lex-item-points">2 pts</span>
           </div>
-          <div class="lex-item-desc">Less echogenic than normal thyroid parenchyma but more echogenic than adjacent neck musculature. A single moderately suspicious feature; U-category is determined by co-existing features.</div>
+          <div class="lex-item-desc">Less echogenic than adjacent thyroid parenchyma but more echogenic than strap muscles.</div>
         </div>
 
         <div class="lex-item">
           <div class="lex-item-header">
-            <span class="lex-item-name">Markedly hypoechoic</span>
+            <span class="lex-item-name">Very hypoechoic</span>
+            <span class="lex-item-points">3 pts</span>
           </div>
-          <div class="lex-item-desc">Less echogenic than the adjacent strap muscles. Highly suspicious feature; alone sufficient to consider U4–5, especially when solid.</div>
-          <div class="lex-note">⚠️ All echogenicity comparisons are made against adjacent thyroid parenchyma, not the lesion itself. Ensure you are comparing to normal-appearing parenchyma, not to thyroiditis-affected tissue.</div>
+          <div class="lex-item-desc">More hypoechoic than the adjacent strap muscles. Strong predictor of malignancy.</div>
         </div>
 
+        <div class="lex-note">⚠️ If echogenicity cannot be determined (e.g. due to shadowing calcification), assign 1 point. All comparisons are made against adjacent thyroid parenchyma.</div>
       </div>
     </div>
 
@@ -892,25 +874,27 @@
       <div class="lex-section-header">
         <span class="lex-icon">📐</span>
         <span class="lex-section-title">Shape</span>
-        <span class="lex-section-sub">Choose 1 · assess in transverse plane</span>
+        <span class="lex-section-sub">Choose 1 · Max 3 pts</span>
       </div>
       <div class="lex-items">
 
         <div class="lex-item">
           <div class="lex-item-header">
-            <span class="lex-item-name">Wider than tall</span>
+            <span class="lex-item-name">Wider-than-tall</span>
+            <span class="lex-item-points">0 pts</span>
           </div>
-          <div class="lex-item-desc">The transverse diameter exceeds the anteroposterior (AP) dimension in the axial plane. Favours benign morphology; most benign nodules expand horizontally along tissue planes.</div>
+          <div class="lex-item-desc">The nodule's width exceeds its height (AP dimension) in the transverse plane. Considered a benign orientation.</div>
         </div>
 
         <div class="lex-item">
           <div class="lex-item-header">
-            <span class="lex-item-name">Taller than wide</span>
+            <span class="lex-item-name">Taller-than-wide</span>
+            <span class="lex-item-points">3 pts</span>
           </div>
-          <div class="lex-item-desc">AP dimension exceeds transverse diameter in the axial plane. Reflects invasive growth perpendicular to tissue planes. An independent predictor of malignancy; alone sufficient to upgrade to U4 in a solid nodule.</div>
-          <div class="lex-tip">💡 Measure in the axial (transverse) plane only. Shape assessment in the longitudinal plane is not used for U-classification. AP dimension = depth from skin surface to posterior nodule wall.</div>
+          <div class="lex-item-desc">Height (AP dimension) exceeds width, measured perpendicular to the sound beam in the transverse plane. Strong independent predictor of malignancy.</div>
         </div>
 
+        <div class="lex-tip">💡 Shape must be assessed in the axial (transverse) plane. Height is the dimension measured perpendicular to the sound beam; width is measured parallel to the transducer footprint.</div>
       </div>
     </div>
 
@@ -919,139 +903,93 @@
       <div class="lex-section-header">
         <span class="lex-icon">🔲</span>
         <span class="lex-section-title">Margin</span>
-        <span class="lex-section-sub">Choose 1</span>
+        <span class="lex-section-sub">Choose 1 · Max 3 pts</span>
       </div>
       <div class="lex-items">
 
         <div class="lex-item">
           <div class="lex-item-header">
-            <span class="lex-item-name">Smooth / well-defined</span>
+            <span class="lex-item-name">Smooth</span>
+            <span class="lex-item-points">0 pts</span>
           </div>
-          <div class="lex-item-desc">A clearly demarcated, even margin without protrusions, notching, or spiculation. A halo sign (hypoechoic rim) is a specific marker of encapsulation and benign aetiology.</div>
+          <div class="lex-item-desc">Well-defined, even margin with no projections or protrusions into adjacent tissue.</div>
         </div>
 
         <div class="lex-item">
           <div class="lex-item-header">
             <span class="lex-item-name">Ill-defined</span>
+            <span class="lex-item-points">0 pts</span>
           </div>
-          <div class="lex-item-desc">Margin merges imperceptibly with adjacent parenchyma but without clear invasion. This is a benign feature in the BTA scheme — typically seen in thyroiditis. Do not conflate with irregular or spiculated margin.</div>
+          <div class="lex-item-desc">Margin cannot be clearly distinguished from surrounding thyroid parenchyma. A benign feature — do not confuse with irregular margin.</div>
         </div>
 
         <div class="lex-item">
           <div class="lex-item-header">
             <span class="lex-item-name">Lobulated or irregular</span>
+            <span class="lex-item-points">2 pts</span>
           </div>
-          <div class="lex-item-desc">Protrusions or angulations extending into adjacent thyroid tissue (lobulated), or a jagged/spiculated interface. Either pattern is a suspicious feature contributing to U4 classification.</div>
+          <div class="lex-item-desc">Protrusions into adjacent thyroid tissue (lobulations), or spiculated/angulated margins. Either pattern scores 2 pts.</div>
         </div>
 
         <div class="lex-item">
           <div class="lex-item-header">
             <span class="lex-item-name">Extra-thyroidal extension</span>
+            <span class="lex-item-points">3 pts</span>
           </div>
-          <div class="lex-item-desc">Unequivocal invasion beyond the thyroid capsule into adjacent soft tissues (strap muscles, trachea, oesophagus, vessels). Highly suspicious; alone classifies as U5. Only score when clearly present — do not infer from abutment of the capsule alone.</div>
-          <div class="lex-note">⚠️ Extra-thyroidal extension should only be reported when clearly visible. Tangential imaging or anterior bulging is not sufficient. If uncertain, report as U4 with comment.</div>
+          <div class="lex-item-desc">Obvious invasion beyond the thyroid capsule into surrounding soft tissue. When present, strongly indicates malignancy.</div>
         </div>
 
+        <div class="lex-note">⚠️ If margin cannot be determined, assign 0 points. The anterior margin is usually most reliable to evaluate. Extra-thyroidal extension should only be scored when obvious.</div>
       </div>
     </div>
 
-    <!-- CALCIFICATION -->
+    <!-- ECHOGENIC FOCI -->
     <div class="lex-section">
       <div class="lex-section-header">
         <span class="lex-icon">✨</span>
-        <span class="lex-section-title">Calcification</span>
-        <span class="lex-section-sub">Select most suspicious present</span>
+        <span class="lex-section-title">Echogenic Foci</span>
+        <span class="lex-section-sub">Choose all that apply · Max 3 pts</span>
       </div>
       <div class="lex-items">
 
         <div class="lex-item">
           <div class="lex-item-header">
-            <span class="lex-item-name">None / comet-tail artefact</span>
+            <span class="lex-item-name">None or large comet-tail artifacts</span>
+            <span class="lex-item-points">0 pts</span>
           </div>
-          <div class="lex-item-desc">No calcification identified, or V-shaped comet-tail reverberation artefacts (&gt;1 mm). Comet-tail artefacts arise from colloid-filled microcysts and are a benign feature, not to be confused with microcalcification.</div>
+          <div class="lex-item-desc">No echogenic foci, or foci with large V-shaped comet-tail reverberation artifacts (&gt;1 mm). Typical of colloid in cystic spaces — benign.</div>
         </div>
 
         <div class="lex-item">
           <div class="lex-item-header">
-            <span class="lex-item-name">Macrocalcification</span>
+            <span class="lex-item-name">Macrocalcifications</span>
+            <span class="lex-item-points">1 pt</span>
           </div>
-          <div class="lex-item-desc">Coarse calcification producing posterior acoustic shadowing. May be central, peripheral, or in a "eggshell" pattern. Intermediate level of suspicion; classified within U3–4 context depending on co-existing features.</div>
+          <div class="lex-item-desc">Coarse calcifications causing posterior acoustic shadowing. Disruption of the nodule margin qualifies as lobulated (additional 2 pts for margin).</div>
         </div>
 
         <div class="lex-item">
           <div class="lex-item-header">
-            <span class="lex-item-name">Peripheral / rim calcification</span>
+            <span class="lex-item-name">Peripheral (rim) calcifications</span>
+            <span class="lex-item-points">2 pts</span>
           </div>
-          <div class="lex-item-desc">Complete or incomplete calcification at the nodule margin. When peripheral calcification is disrupted or has soft tissue break-through, this substantially raises the risk of malignancy (U4–5).</div>
+          <div class="lex-item-desc">Complete or incomplete calcification along the nodule margin. Disruption of peripheral calcification raises suspicion further.</div>
         </div>
 
         <div class="lex-item">
           <div class="lex-item-header">
-            <span class="lex-item-name">Microcalcification (punctate echogenic foci)</span>
+            <span class="lex-item-name">Punctate echogenic foci</span>
+            <span class="lex-item-points">3 pts</span>
           </div>
-          <div class="lex-item-desc">Tiny (&lt;1 mm), non-shadowing, punctate echogenic foci within the solid component. Pathologically correspond to psammomatous calcifications, highly characteristic of papillary thyroid carcinoma. A strongly suspicious feature contributing to U4–5.</div>
-          <div class="lex-note">⚠️ Distinguish carefully from comet-tail artefact. True microcalcifications cast no posterior shadow and produce no V-shaped posterior artefact. Foci in cystic spaces with posterior artefact are colloid — not suspicious.</div>
+          <div class="lex-item-desc">Small (&lt;1 mm), non-shadowing foci within solid component. May have tiny comet-tail artifacts. Correspond to psammomatous calcifications — highly suspicious for papillary carcinoma.</div>
         </div>
 
-      </div>
-    </div>
-
-    <!-- VASCULARITY -->
-    <div class="lex-section">
-      <div class="lex-section-header">
-        <span class="lex-icon">🩸</span>
-        <span class="lex-section-title">Vascularity</span>
-        <span class="lex-section-sub">Supplementary feature</span>
-      </div>
-      <div class="lex-items">
-
-        <div class="lex-item">
-          <div class="lex-item-header">
-            <span class="lex-item-name">Absent or peripheral only</span>
-          </div>
-          <div class="lex-item-desc">No internal vascularity on colour or power Doppler. Peripheral (rim) vascularity alone is not suspicious and is commonly seen in adenomatous nodules.</div>
-        </div>
-
-        <div class="lex-item">
-          <div class="lex-item-header">
-            <span class="lex-item-name">Increased internal vascularity</span>
-          </div>
-          <div class="lex-item-desc">Marked internal vascularity with chaotic or disorganised flow pattern. A supplementary suspicious feature that may support U4 classification when other features are borderline. Not used as an isolated criterion for classification.</div>
-          <div class="lex-tip">💡 Vascularity assessment is Doppler-setting dependent. Ensure gain is optimised before documenting vascularity. Power Doppler is more sensitive than colour Doppler for low-flow states.</div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- LYMPH NODES -->
-    <div class="lex-section">
-      <div class="lex-section-header">
-        <span class="lex-icon">🔗</span>
-        <span class="lex-section-title">Lymph Nodes</span>
-        <span class="lex-section-sub">Cervical chain assessment</span>
-      </div>
-      <div class="lex-items">
-
-        <div class="lex-item">
-          <div class="lex-item-header">
-            <span class="lex-item-name">Normal</span>
-          </div>
-          <div class="lex-item-desc">Oval morphology with preserved fatty hilum, hilar vascularity, and a hypoechoic cortex of uniform thickness (&lt;3 mm). Normal nodes at level VI may be smaller and rounder. Reactive nodes may be enlarged but retain internal architecture.</div>
-        </div>
-
-        <div class="lex-item">
-          <div class="lex-item-header">
-            <span class="lex-item-name">Suspicious</span>
-          </div>
-          <div class="lex-item-desc">One or more of: rounded shape (short:long axis ratio &gt;0.5), loss of fatty hilum, microcalcification, cystic change, or peripheral / hyperechoic echogenicity. Suspicious nodes at any level of the central or lateral compartment in the context of a thyroid nodule strongly suggest malignancy and mandate U5 classification.</div>
-          <div class="lex-note">⚠️ Even a small (sub-centimetre) thyroid nodule should be classified U5 if any cervical lymph node shows unequivocal suspicious features. Node status takes priority over nodule size in management decisions.</div>
-        </div>
-
+        <div class="lex-note">⚠️ Foci must be clearly identifiable and confined within the nodule. Punctate foci in cystic spaces with large comet-tail artifacts represent colloid and are not scored as suspicious. If composition cannot be assessed due to calcification, assign 2 pts for composition.</div>
       </div>
     </div>
 
     <div style="padding: 14px 16px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); font-size: 12px; color: var(--text-muted); margin-top: 8px;">
-      BTA Guidelines for the Management of Thyroid Cancer, 3rd Edition (2023) · Cross P et al. Clin Endocrinol. 2023. Always refer to the full guideline document for complete recommendations.
+      ACR TI-RADS 2017 White Paper · Tessler FN et al. J Am Coll Radiol. 2017;14:587–595
     </div>
 
   </div><!-- end lexicon -->
@@ -1059,7 +997,7 @@
 </main>
 
 <footer>
-  <p>Based on BTA 2023 Thyroid Ultrasound Guidelines &nbsp;·&nbsp; For clinical decision support only — not a substitute for professional judgement</p>
+  <p>Based on ACR TI-RADS 2017 White Paper &nbsp;·&nbsp; For clinical decision support only — not a substitute for professional judgement</p>
   <p style="margin-top:4px;">© 2026 Graham Martin</p>
 </footer>
 
@@ -1080,137 +1018,58 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
   });
 });
 
-// ── CLASSIFICATION LOGIC ────────────────────────────────────────────────────
-function getClassification() {
-  const composition  = document.getElementById('composition').value;
-  const echogenicity = document.getElementById('echogenicity').value;
-  const shape        = document.getElementById('shape').value;
-  const margin       = document.getElementById('margin').value;
-  const calcification= document.getElementById('calcification').value;
-  const vascularity  = document.getElementById('vascularity').value;
-  const lymph        = document.getElementById('lymph').value;
-
-  // U5 criteria — highest priority
-  if (lymph === 'suspicious') return 5;
-  if (margin === 'ete') return 5;
-  if (
-    echogenicity === 'very_hypo' &&
-    (shape === 'taller' || margin === 'lobulated' || calcification === 'micro')
-  ) return 5;
-
-  // U4 criteria
-  let suspiciousCount = 0;
-  if (echogenicity === 'very_hypo') suspiciousCount++;
-  if (echogenicity === 'hypo' && shape === 'taller') suspiciousCount++;
-  if (shape === 'taller') suspiciousCount++;
-  if (margin === 'lobulated') suspiciousCount++;
-  if (calcification === 'micro') suspiciousCount++;
-  if (calcification === 'peripheral') suspiciousCount++;
-
-  if (suspiciousCount >= 2) return 4;
-  if (suspiciousCount === 1) {
-    // A single highly suspicious feature in a solid nodule → U4
-    if (calcification === 'micro') return 4;
-    if (shape === 'taller') return 4;
-    if (margin === 'lobulated') return 4;
+// ── SCORING ──────────────────────────────────────────────────────────────────
+function getPoints(selectEl) {
+  const pointsMap = JSON.parse(selectEl.dataset.points);
+  if (selectEl.multiple) {
+    let total = 0;
+    Array.from(selectEl.selectedOptions).forEach(opt => {
+      if (opt.value && pointsMap[opt.value] !== undefined) total += pointsMap[opt.value];
+    });
+    return total;
   }
-
-  // U2 — benign features
-  if (composition === 'pure_cystic') return 2;
-  if (composition === 'microcystic') return 2;
-  if (
-    composition === 'mixed' &&
-    echogenicity !== 'very_hypo' &&
-    echogenicity !== 'hypo' &&
-    shape !== 'taller' &&
-    margin !== 'lobulated' &&
-    calcification !== 'micro'
-  ) return 2;
-  if (
-    (echogenicity === 'hyperiso' || echogenicity === 'na') &&
-    shape !== 'taller' &&
-    margin !== 'lobulated' &&
-    margin !== 'ete' &&
-    calcification !== 'micro' &&
-    calcification !== 'peripheral'
-  ) return 2;
-
-  // U3 — indeterminate
-  if (
-    composition === 'solid' &&
-    echogenicity === 'hypo' &&
-    suspiciousCount === 0
-  ) return 3;
-
-  if (suspiciousCount === 0 && composition !== '') return 2;
-
-  return 3; // default indeterminate when fields set but no clear category
+  return selectEl.value && pointsMap[selectEl.value] !== undefined ? pointsMap[selectEl.value] : 0;
 }
 
-const uData = {
-  1: {
-    name: 'Normal',
-    risk: 'No nodule identified / no suspicious features',
-    mgmt: 'No FNA required. No follow-up required.',
-    thy: 'Not applicable',
-    cls: 'u1'
-  },
-  2: {
-    name: 'Benign',
-    risk: 'Malignancy risk <1%',
-    mgmt: 'No FNA required. Routine clinical follow-up only.',
-    thy: 'FNA not routinely indicated; Thy grading not required',
-    cls: 'u2'
-  },
-  3: {
-    name: 'Indeterminate / Equivocal',
-    risk: 'Malignancy risk approximately 5–10%',
-    mgmt: 'FNA if ≥ 20 mm. USS follow-up at 3–6 months if not aspirated.',
-    thy: 'Thy 1–3a expected range if aspirated',
-    cls: 'u3'
-  },
-  4: {
-    name: 'Suspicious',
-    risk: 'Malignancy risk approximately 60–75%',
-    mgmt: 'FNA recommended for all nodules ≥ 10 mm. MDT discussion for <10 mm.',
-    thy: 'Thy 3f–4 expected range if aspirated',
-    cls: 'u4'
-  },
-  5: {
-    name: 'Malignant',
-    risk: 'Malignancy risk >95%',
-    mgmt: 'FNA and urgent MDT referral. Core biopsy if FNA non-diagnostic.',
-    thy: 'Thy 5 expected; proceed to surgical planning on confirmation',
-    cls: 'u5'
-  }
-};
+function classify(score) {
+  if (score === 0) return { tr: 1, name: 'Benign', cls: 'tr1', mgmt: 'No FNA required.', followup: 'No follow-up required.' };
+  if (score === 2) return { tr: 2, name: 'Not suspicious', cls: 'tr2', mgmt: 'No FNA required.', followup: 'No follow-up required.' };
+  if (score === 3) return { tr: 3, name: 'Mildly suspicious', cls: 'tr3', mgmt: 'FNA if ≥ 2.5 cm', followup: 'Follow-up if ≥ 1.5 cm (at 1, 3, and 5 years)' };
+  if (score >= 4 && score <= 6) return { tr: 4, name: 'Moderately suspicious', cls: 'tr4', mgmt: 'FNA if ≥ 1.5 cm', followup: 'Follow-up if ≥ 1.0 cm (at 1, 2, 3, and 5 years)' };
+  if (score >= 7) return { tr: 5, name: 'Highly suspicious', cls: 'tr5', mgmt: 'FNA if ≥ 1.0 cm', followup: 'Follow-up if ≥ 0.5 cm (annually for up to 5 years)' };
+  return { tr: 2, name: 'Not suspicious', cls: 'tr2', mgmt: 'No FNA required.', followup: 'No follow-up required.' };
+}
 
 // ── CALCULATE ───────────────────────────────────────────────────────────────
 document.getElementById('btn-calc').addEventListener('click', () => {
-  const location = document.getElementById('location').value;
-  const size     = document.getElementById('size').value;
-  const composition = document.getElementById('composition').value;
+  const composition  = document.getElementById('composition');
+  const echogenicity = document.getElementById('echogenicity');
+  const shape         = document.getElementById('shape');
+  const margin         = document.getElementById('margin');
+  const foci             = document.getElementById('foci');
 
-  if (!composition) {
+  if (!composition.value) {
     showToast('Please complete at least the Composition field.');
     return;
   }
 
-  const u = getClassification();
-  const d = uData[u];
+  const score = getPoints(composition) + getPoints(echogenicity) + getPoints(shape) + getPoints(margin) + getPoints(foci);
+  const result = classify(score);
 
-  const badge = document.getElementById('u-badge');
-  badge.textContent = 'U' + u;
-  badge.className = 'u-badge ' + d.cls;
+  const badge = document.getElementById('tr-badge');
+  badge.textContent = 'TR' + result.tr;
+  badge.className = 'tr-badge ' + result.cls;
 
-  document.getElementById('result-desc').textContent = d.name;
+  document.getElementById('result-desc').textContent = result.name;
 
-  const loc  = location || 'Not specified';
-  const sz   = size ? size + ' mm' : 'Not recorded';
-  document.getElementById('res-nodule').textContent = loc + ' · ' + sz;
-  document.getElementById('res-risk').textContent   = d.risk;
-  document.getElementById('res-mgmt').textContent   = d.mgmt;
-  document.getElementById('res-thy').textContent    = d.thy;
+  const location = document.getElementById('location').value || 'Not specified';
+  const size = document.getElementById('size').value;
+  const sz = size ? size + ' cm' : 'Not recorded';
+
+  document.getElementById('res-nodule').textContent = location + ' · ' + sz;
+  document.getElementById('res-points').textContent = score + ' points';
+  document.getElementById('res-mgmt').textContent = result.mgmt;
+  document.getElementById('res-followup').textContent = result.followup;
 
   document.getElementById('result-rows').style.display = 'flex';
   document.getElementById('btn-copy').style.display = 'flex';
@@ -1218,10 +1077,16 @@ document.getElementById('btn-calc').addEventListener('click', () => {
 
 // ── RESET ───────────────────────────────────────────────────────────────────
 document.getElementById('btn-reset').addEventListener('click', () => {
-  document.querySelectorAll('select').forEach(s => s.value = '');
+  document.querySelectorAll('select').forEach(s => {
+    if (s.multiple) {
+      Array.from(s.options).forEach(o => o.selected = false);
+    } else {
+      s.value = '';
+    }
+  });
   document.querySelectorAll('input[type="number"]').forEach(i => i.value = '');
-  document.getElementById('u-badge').textContent = '—';
-  document.getElementById('u-badge').className = 'u-badge';
+  document.getElementById('tr-badge').textContent = '—';
+  document.getElementById('tr-badge').className = 'tr-badge';
   document.getElementById('result-desc').textContent = 'Complete the fields above and press Calculate.';
   document.getElementById('result-rows').style.display = 'none';
   document.getElementById('btn-copy').style.display = 'none';
@@ -1230,49 +1095,43 @@ document.getElementById('btn-reset').addEventListener('click', () => {
 // ── COPY REPORT ─────────────────────────────────────────────────────────────
 document.getElementById('btn-copy').addEventListener('click', () => {
   const location = document.getElementById('location').value || 'Not specified';
-  const size     = document.getElementById('size').value || 'Not recorded';
+  const size = document.getElementById('size').value || 'Not recorded';
   const composition  = document.getElementById('composition').options[document.getElementById('composition').selectedIndex]?.text || '';
   const echogenicity = document.getElementById('echogenicity').options[document.getElementById('echogenicity').selectedIndex]?.text || '';
-  const shape        = document.getElementById('shape').options[document.getElementById('shape').selectedIndex]?.text || '';
-  const margin       = document.getElementById('margin').options[document.getElementById('margin').selectedIndex]?.text || '';
-  const calcification= document.getElementById('calcification').options[document.getElementById('calcification').selectedIndex]?.text || '';
-  const vascularity  = document.getElementById('vascularity').options[document.getElementById('vascularity').selectedIndex]?.text || '';
-  const lymph        = document.getElementById('lymph').options[document.getElementById('lymph').selectedIndex]?.text || '';
+  const shape          = document.getElementById('shape').options[document.getElementById('shape').selectedIndex]?.text || '';
+  const margin          = document.getElementById('margin').options[document.getElementById('margin').selectedIndex]?.text || '';
+  const fociSelect      = document.getElementById('foci');
+  const foci             = Array.from(fociSelect.selectedOptions).map(o => o.text).join('; ') || 'Not specified';
 
-  const u    = document.getElementById('u-badge').textContent;
-  const desc = document.getElementById('result-desc').textContent;
-  const risk = document.getElementById('res-risk').textContent;
-  const mgmt = document.getElementById('res-mgmt').textContent;
-  const thy  = document.getElementById('res-thy').textContent;
+  const tr     = document.getElementById('tr-badge').textContent;
+  const desc   = document.getElementById('result-desc').textContent;
+  const points = document.getElementById('res-points').textContent;
+  const mgmt   = document.getElementById('res-mgmt').textContent;
+  const followup = document.getElementById('res-followup').textContent;
 
   const report = [
-    'THYROID ULTRASOUND — BTA U-CLASSIFICATION REPORT',
+    'THYROID ULTRASOUND — TI-RADS REPORT',
     '─'.repeat(48),
     '',
-    'Location:       ' + location,
-    'Maximum size:   ' + size + (size !== 'Not recorded' ? ' mm' : ''),
+    'Location:        ' + location,
+    'Size:             ' + size + (size !== 'Not recorded' ? ' cm' : ''),
     '',
     'FEATURES',
-    'Composition:    ' + composition,
-    'Echogenicity:   ' + echogenicity,
-    'Shape:          ' + shape,
-    'Margin:         ' + margin,
-    'Calcification:  ' + calcification,
-    'Vascularity:    ' + vascularity,
-    'Lymph nodes:    ' + lymph,
+    'Composition:      ' + composition,
+    'Echogenicity:     ' + echogenicity,
+    'Shape:            ' + shape,
+    'Margin:           ' + margin,
+    'Echogenic foci:   ' + foci,
     '',
-    'CLASSIFICATION',
-    u + ' — ' + desc,
-    'Malignancy risk: ' + risk,
+    'SCORE',
+    tr + ' — ' + desc + ' (' + points + ')',
     '',
-    'MANAGEMENT',
+    'RECOMMENDATIONS',
     mgmt,
-    '',
-    'THY GRADING NOTE',
-    thy,
+    followup,
     '',
     '─'.repeat(48),
-    'Generated using BTA U-Classification Calculator (BTA 2023 Guidelines)',
+    'Generated using TI-RADS Calculator (ACR TI-RADS 2017)',
     'For clinical decision support only. Correlate with clinical context.'
   ].join('\n');
 
